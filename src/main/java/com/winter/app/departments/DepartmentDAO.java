@@ -8,8 +8,6 @@ import java.util.List;
 
 import com.winter.app.utils.DBConnection;
 
-import oracle.jdbc.proxy.annotation.Pre;
-
 public class DepartmentDAO {
 	
 	//부서 수정
