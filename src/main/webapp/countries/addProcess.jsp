@@ -3,14 +3,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%
+<% 
 	String c_id = request.getParameter("country_id");
+	String c_name = request.getParameter("country_name");
+	String r_id = request.getParameter("region_id");
 	
 	CountryDTO dto = new CountryDTO();
 	dto.setCountry_id(c_id);
+	dto.setCountry_name(c_name);
+	dto.setRegion_id(Integer.parseInt(r_id));
 	
 	CountryDAO dao = new CountryDAO();
-	dto = dao.getDetail(dto);
+	
+	int result = dao.add(dto);
+	
+	String reply = "국가 등록 실패";
+	
+	if (result > 0) {
+		reply = "국가 등록 성공";
+		
+	}
 	
 %>
 
@@ -22,25 +34,13 @@
 </head>
 <body>
 
-	<h1>국가 정보 페이지</h1>
+	<h1>국가 등록 처리 페이지</h1>
+	
+	<h3><%= reply %></h3>
+	
+	<a href="/">HOME</a>
+	<a href="./list.jsp">LIST</a>
+	
 
-	<% if (dto != null) { %>
-		<div>
-			<h3>ID <%= dto.getCountry_id() %></h3>
-			<h3>NAME <%= dto.getCountry_name() %></h3>
-			<h3>REGION <%= dto.getRegion_id() %></h3>
-		</div>
-		
-	<% } else { %>
-		<div>
-			<h3>없는 국가입니다.</h3>
-		</div>	
-	<% } %>
-	
-	<a href="./add.jsp?counrty_id=<%= dto.getCountry_id() %>">국가 수정</a>
-	<a href="./delete.jsp?counrty_id=<%= dto.getCountry_id() %>">국가 삭제</a>
-	
-	
-	
 </body>
 </html>
