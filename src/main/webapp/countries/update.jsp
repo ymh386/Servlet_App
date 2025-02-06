@@ -11,7 +11,7 @@
 	
 	CountryDAO dao = new CountryDAO();
 	dto = dao.getDetail(dto);
-	
+
 %>
 
 <!DOCTYPE html>
@@ -21,26 +21,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<h1>국가 정보 페이지</h1>
-
-	<% if (dto != null) { %>
-		<div>
-			<h3>ID <%= dto.getCountry_id() %></h3>
-			<h3>NAME <%= dto.getCountry_name() %></h3>
-			<h3>REGION <%= dto.getRegion_id() %></h3>
-		</div>
+	<h1>국가 정보 수정 페이지</h1>
+	
+	<form action="./updateProcess.jsp" method="post">
+		<input type="hidden" name="country_id" value="<%= dto.getCountry_id() %>">
+		<input type="text" name="country_name" value="<%= dto.getCountry_name() %>">
+		<input type="text" name="region_id" value="<%= dto.getRegion_id() %>">
 		
-	<% } else { %>
-		<div>
-			<h3>없는 국가입니다.</h3>
-		</div>	
-	<% } %>
+		<button type="submit">수정하기</button>
 	
-	<a href="./update.jsp?counrty_id=<%= dto.getCountry_id() %>">국가 수정</a>
-	<a href="./deleteProcess.jsp?country_id=<%= dto.getCountry_id() %>">국가 삭제</a>
+	</form>
 	
 	
 	
+	
+
 </body>
 </html>
