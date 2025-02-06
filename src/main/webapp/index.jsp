@@ -10,5 +10,8 @@
 	<h1>HOME22</h1>
 	<a href="./departments/list.jsp">부서리스트</a>
 	<a href="./locations/list.jsp">지역리스트</a>
+	<a href="./countries/list.jsp">국가 리스트</a>
+	
+	
 </body>
 </html>
