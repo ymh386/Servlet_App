@@ -57,7 +57,7 @@ public class CountryDAO {
 		int result = 0;
 		Connection con = DBConnection.getConnection();
 		String sql = "INSERT INTO COUNTRIES VALUES"
-				+ " (COUNTRY_ID, COUNTRY_NAME, REGION_ID)";
+				+ " (?, ?, ?)";
 		PreparedStatement st = con.prepareStatement(sql);
 		
 		st.setString(1, countryDTO.getCountry_id());
