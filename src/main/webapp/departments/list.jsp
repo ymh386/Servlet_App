@@ -1,4 +1,3 @@
-<%@page import="oracle.jdbc.proxy.annotation.GetDelegate"%>
 <%@page import="com.winter.app.departments.DepartmentDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.winter.app.departments.DepartmentDTO"%>
