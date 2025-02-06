@@ -37,7 +37,7 @@
 		</div>	
 	<% } %>
 	
-	<a href="./update.jsp?counrty_id=<%= dto.getCountry_id() %>">국가 수정</a>
+	<a href="./update.jsp?country_id=<%= dto.getCountry_id() %>">국가 수정</a>
 	<a href="./deleteProcess.jsp?country_id=<%= dto.getCountry_id() %>">국가 삭제</a>
 	
 	
