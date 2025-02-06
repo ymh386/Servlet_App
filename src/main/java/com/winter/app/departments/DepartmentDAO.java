@@ -8,14 +8,73 @@ import java.util.List;
 
 import com.winter.app.utils.DBConnection;
 
+import oracle.jdbc.proxy.annotation.Pre;
+
 public class DepartmentDAO {
+	
+	//부서 수정
+	public int update(DepartmentDTO departmentDTO) throws Exception {
+		int result = 0;
+		Connection con = DBConnection.getConnection();
+		String sql = "UPDATE DEPARTMENTS SET DEPARTMENT_NAME=?, MANAGER_ID=?, LOCATION_ID=?"
+				+ " WHERE DEPARTMENT_ID=?";
+		
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1, departmentDTO.getDepartment_name());
+		st.setInt(2, departmentDTO.getManager_id());
+		st.setInt(3, departmentDTO.getLocation_id());
+		st.setInt(4,  departmentDTO.getDepartment_id());
+		
+		result = st.executeUpdate();
+		
+		DBConnection.disConnect(st, con);
+		
+		return result;
+	}
+	
+	//부서 삭제
+	public int delete(DepartmentDTO departmentDTO) throws Exception{
+		int result=0;
+		Connection con = DBConnection.getConnection();
+		String sql = "DELETE DEPARTMENTS WHERE DEPARTMENT_ID=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setInt(1, departmentDTO.getDepartment_id());
+		
+		result = st.executeUpdate();
+		
+		DBConnection.disConnect(st, con);
+		
+		return result;
+	}
+	
+	//부서 추가
+	public int add(DepartmentDTO departmentDTO) throws Exception {
+		int result = 0;
+		Connection con = DBConnection.getConnection();
+		String sql = "INSERT INTO DEPARTMENTS (DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID, LOCATION_ID)"
+				+ " VALUES (DEPARTMENTS_SEQ.NEXTVAL, ?, ?, ?)";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1, departmentDTO.getDepartment_name());
+		st.setInt(2, departmentDTO.getManager_id());
+		st.setInt(3, departmentDTO.getLocation_id());
+		
+		result = st.executeUpdate();
+		
+		DBConnection.disConnect(st, con);
+		
+		
+		return result;
+	}
 	
 	public List<DepartmentDTO> getList()throws Exception{
 		//DB에서 부서 리스트를 조회
 		//1. Connection 
 		Connection con = DBConnection.getConnection();
 		//2. sql
-		String sql = "SELECT * FROM DEPARTMENTS";
+		String sql = "SELECT * FROM DEPARTMENTS ORDER BY DEPARTMENT_ID DESC";
 		//3. 미리보내기
 		PreparedStatement st = con.prepareStatement(sql);
 		//4. ? 처리하기
@@ -42,7 +101,7 @@ public class DepartmentDAO {
 	public DepartmentDTO getDetail(DepartmentDTO departmentDTO) throws Exception {
 		//DB에서 하나의 부서 정보를 조회
 		Connection con = DBConnection.getConnection();
-		String sql = "SELECT * FROM WHERE DEPARTMENT_ID = ?";
+		String sql = "SELECT * FROM DEPARTMENTS WHERE DEPARTMENT_ID = ?";
 		PreparedStatement st = con.prepareStatement(sql);
 		
 		st.setInt(1, departmentDTO.getDepartment_id());

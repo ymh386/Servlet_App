@@ -7,6 +7,7 @@ public class LocationDTO {
 	private String postal_code;
 	private String city;
 	private String state_province;
+	private String country_id;
 	
 	public int getLocation_id() {
 		return location_id;
@@ -44,7 +45,7 @@ public class LocationDTO {
 	public void setCountry_id(String country_id) {
 		this.country_id = country_id;
 	}
-	private String country_id;
+	
 	
 	
 

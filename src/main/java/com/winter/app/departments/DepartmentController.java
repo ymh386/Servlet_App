@@ -54,10 +54,15 @@ public class DepartmentController extends HttpServlet {
 			String method = request.getMethod();
 			StringBuffer url = request.getRequestURL();
 			String uri = request.getRequestURI();
+			
+			//parameter
+			String department_id = request.getParameter("department_id");
+			
 //		System.out.println(url.toString());
 //		System.out.println(uri);
 //		System.out.println(method);
 			DepartmentDAO departmentDAO = new DepartmentDAO();
+			DepartmentDTO departmentDTO = new DepartmentDTO();
 			
 			uri = this.useSubString(uri);
 			if(uri.equals("list.do")) {
@@ -85,7 +90,7 @@ public class DepartmentController extends HttpServlet {
 				 p.close();
 			}
 			else if(uri.equals("detail.do")) {
-				departmentDAO.getDetail();
+				departmentDTO = departmentDAO.getDetail(departmentDTO);
 			}
 			
 		} catch (Exception e) {

@@ -1,13 +1,12 @@
-<%@page import="oracle.jdbc.proxy.annotation.GetDelegate"%>
-<%@page import="com.winter.app.departments.DepartmentDAO"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="com.winter.app.locations.LocationDTO"%>
 <%@page import="com.winter.app.departments.DepartmentDTO"%>
 <%@page import="java.util.List"%>
+<%@page import="com.winter.app.locations.LocationDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% 
-	DepartmentDAO departmentDAO = new DepartmentDAO();
-	List<DepartmentDTO> ar = departmentDAO.getList();
+	LocationDAO locationDAO = new LocationDAO();
+	List<LocationDTO> ar = locationDAO.getList();
 %>
 <!DOCTYPE html>
 <html>
@@ -24,26 +23,26 @@
 </style>
 </head>
 <body>
-	<h1>Department List</h1>
+	<h1>Location List</h1>
 	<table border="1">
 		<thead>
 			<tr>
-				<th>Department_Id</th>
-				<th>Department_Name</th>
+				<th>Location_Id</th>
+				<th>City</th>
 			</tr>
 		</thead>
 		<tbody>
 			<% for(int i=0;i<ar.size();i++) { %>
 				<tr>
-					<td><%=ar.get(i).getDepartment_id() %></td>
-					<td><a href="./detail.jsp?department_id=<%= ar.get(i).getDepartment_id()%>"><%=ar.get(i).getDepartment_name() %></a></td>
+					<td><%=ar.get(i).getLocation_id() %></td>
+					<td><a href="./detail.jsp?location_id=<%= ar.get(i).getLocation_id()%>"><%=ar.get(i).getCity() %></a></td>
 				</tr>
 			<%} %>
 		</tbody>
 	</table>
 	
 	<div>
-		<a href="./add.jsp">부서등록</a>
+		<a href="./add.jsp">지역등록</a>
 	</div>
 </body>
 </html>
