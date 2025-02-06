@@ -36,7 +36,7 @@
 			<% for(int i=0;i<ar.size();i++) { %>
 				<tr>
 					<td><%=ar.get(i).getCountry_id() %></td>
-					<td><a href="./detail.jsp?country_id=<%=ar.get(i).getCountry_id() %>">
+					<td><a href="./detail.jsp?country_id=<%= ar.get(i).getCountry_id() %>">
 					<%=ar.get(i).getCountry_name() %></a></td>
 				</tr>
 			<%} %>
