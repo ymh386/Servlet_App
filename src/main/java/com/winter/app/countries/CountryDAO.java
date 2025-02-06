@@ -53,22 +53,54 @@ public class CountryDAO {
 		return countryDTO;
 	}
 	
-	public int add(CountryDTO countryDTO) {
+	public int add(CountryDTO countryDTO) throws Exception {
 		int result = 0;
+		Connection con = DBConnection.getConnection();
+		String sql = "INSERT INTO COUNTRIES VALUES"
+				+ " (COUNTRY_ID, COUNTRY_NAME, REGION_ID)";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1, countryDTO.getCountry_id());
+		st.setString(2, countryDTO.getCountry_name());
+		st.setInt(3, countryDTO.getRegion_id());
+		
+		result = st.executeUpdate();
+		
+		DBConnection.disConnect(st, con);
 		
 		
 		return result;
 	}
 	
-	public int delete(CountryDTO countryDTO) {
+	public int delete(CountryDTO countryDTO) throws Exception {
 		int result = 0;
+		Connection con = DBConnection.getConnection();
+		String sql = "DELETE COUNTRIES WHERE COUNTRY_ID=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1, countryDTO.getCountry_id());
+		
+		result = st.executeUpdate();
+		
+		DBConnection.disConnect(st, con);
 		
 		return result;
 	}
 	
-	public int update(CountryDTO countryDTO) {
+	public int update(CountryDTO countryDTO) throws Exception {
 		int result = 0;
+		Connection con = DBConnection.getConnection();
+		String sql = "UPDATE COUNTRIES SET COUNTRY_NAME=?, REGION_ID=?"
+				+ " WHERE COUNTRY_ID=?";
+		PreparedStatement st = con.prepareStatement(sql);
 		
+		st.setString(1, countryDTO.getCountry_name());
+		st.setInt(2, countryDTO.getRegion_id());
+		st.setString(3, countryDTO.getCountry_id());
+		
+		result = st.executeUpdate();
+		
+		DBConnection.disConnect(st, con);
 		
 		return result;
 	}
