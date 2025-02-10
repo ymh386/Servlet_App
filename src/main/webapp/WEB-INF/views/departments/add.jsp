@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/layout.css">
+</head>
 <style>
 	
 	
@@ -49,19 +49,19 @@
 <body>
 	<!-- Sementic tag -->
 	<!-- JSP 파일 불러오기 : header.jsp -->
-	<%@ include file="/template/header.jsp"%>
+	<%@ include file="../template/header.jsp"%>
 
 	<section class="contents wrap_left">
 		<div class="left contents_left">
 			
-			<%@ include file="/template/nav.jsp" %>
+			<%@ include file="../template/nav.jsp" %>
 			
 		</div>
 		<div class="right contents_right">
 			<div class="form-wrapper">
 				<h2>부서 추가 페이지</h2>
 		
-				<form action="./addProcess.jsp" method="post" id="add-form">
+				<form action="./add.do" method="post" id="add-form">
 					
 						
 						<input type="text" name="department_name" value="test">
@@ -86,7 +86,7 @@
 		</div>
 	</section>
 
-	<%@ include file="/template/footer.jsp"%>
+	<%@ include file="../template/footer.jsp"%>
 	
 </body>
 </html>
