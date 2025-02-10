@@ -5,13 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%@ include file="/template/common.jsp"%>
 </head>
 <body>
-	<h1>HOME22</h1>
-	<a href="./departments/list.jsp">부서리스트</a>
-	<a href="./locations/list.jsp">지역리스트</a>
-	<a href="./countries/list.jsp">국가 리스트</a>
+	<!--Sementic tag-->
+		<%@ include file="/template/header.jsp"%>
+		<section class="wrap_left contents">
+			<%@ include file="./template/nav.jsp"%>
+			<div class="right contents_right"></div>
 	
+		</section>
 	
+		<%@ include file="./template/footer.jsp"%>	
 </body>
 </html>
