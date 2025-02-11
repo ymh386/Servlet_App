@@ -44,5 +44,15 @@
   	<servlet-name>location</servlet-name>
   	<url-pattern>/locations/*</url-pattern>
   </servlet-mapping>
+  
+  <!-- Employees -->
+  <servlet>
+  	<servlet-name>employee</servlet-name>
+  	<servlet-class>com.winter.app.employees.EmployeeController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>employee</servlet-name>
+  	<url-pattern>/employees/*</url-pattern>
+  </servlet-mapping>
 </web-app>
 

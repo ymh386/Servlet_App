@@ -1,24 +1,18 @@
-<%@page import="com.winter.app.locations.LocationDTO"%>
-<%@page import="com.winter.app.departments.DepartmentDTO"%>
-<%@page import="java.util.List"%>
-<%@page import="com.winter.app.locations.LocationDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% 
-	List<LocationDTO> ar = (List<LocationDTO>)request.getAttribute("list");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@ include file="../template/common.jsp"%>
+<c:import url="../template/common.jsp"></c:import>
 <link rel="stylesheet" href="../resources/css/list.css">
 </head>
 <body>
-	<%@ include file="../template/header.jsp"%>
+	<c:import url="../template/header.jsp"></c:import>
 	<section class="wrap_left contents">
-		<%@ include file="../template/nav.jsp"%>
+		<c:import url="../template/nav.jsp"></c:import>
 		<div class="right contents_right">
 			<div class="contents_right_list">
 				<table class="table_sprite">
@@ -30,18 +24,15 @@
 					</thead>
 					<tbody>
 	
-						<%
-						for (int i = 0; i < ar.size(); i++) {
-						%>
+						<c:forEach items="${list}" var="l">
 						<tr>
-							<td><%=ar.get(i).getLocation_id()%></td>
+							<td>${l.location_id }</td>
 							<td><a
-								href="./detail.do?location_id=<%=ar.get(i).getLocation_id()%>"><%=ar.get(i).getCity()%></a>
+								href="./detail.do?location_id=${l.location_id }">${l.city }</a>
 							</td>
 						</tr>
-						<%
-						}
-						%>
+						</c:forEach>
+						
 					</tbody>
 				</table>
 			</div>
@@ -54,6 +45,6 @@
 
 	</section>
 
-	<%@ include file="../template/footer.jsp"%>
+	<c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>

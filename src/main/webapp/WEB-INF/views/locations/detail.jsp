@@ -1,26 +1,22 @@
-<%@page import="com.winter.app.locations.LocationDAO"%>
-<%@page import="com.winter.app.locations.LocationDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	LocationDTO locationDTO = (LocationDTO)request.getAttribute("dto");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@ include file="../template/common.jsp"%>
+<c:import url="../template/common.jsp"></c:import>
 </head>
 <body>
 	<!-- Sementic tag -->
 	<!-- JSP 파일 불러오기 : header.jsp -->
-	<%@ include file="../template/header.jsp"%>
+	<c:import url="../template/header.jsp"></c:import>
 
 	<section class="contents wrap_left">
 		<div class="left contents_left">
 			
-			<%@ include file="../template/nav.jsp" %>
+			<c:import url="../template/nav.jsp"></c:import>
 			
 		</div>
 		<div class="right contents_right">
@@ -29,25 +25,29 @@
 	
 			<h1>Location tail Page</h1>
 			
-			<% if(locationDTO != null) { %>
-				<h3><%= locationDTO.getLocation_id() %></h3>
-				<h3><%= locationDTO.getStreet_address() %></h3>
-				<h3><%= locationDTO.getPostal_code() %></h3>
-				<h3><%= locationDTO.getCity() %></h3>
-				<h3><%= locationDTO.getState_province() %></h3>
-				<h3><%= locationDTO.getCountry_id() %></h3>
+			
+			
+			<c:if test="${not empty dto }">
+				<h3>${dto.location_id }</h3>
+				<h3>${dto.street_address }</h3>
+				<h3>${dto.postal_code }</h3>
+				<h3>${dto.city }</h3>
+				<h3>${dto.state_province }</h3>
+				<h3>${dto.country_id }</h3>
 				
-				<a href="./delete.do?location_id=<%= locationDTO.getLocation_id() %>">지역 삭제</a>
-				<a href="./update.do?location_id=<%= locationDTO.getLocation_id() %>">지역 수정</a>
+				<a href="./delete.do?location_id=${dto.location_id }">지역 삭제</a>
+				<a href="./update.do?location_id=${dto.location_id }">지역 수정</a>
+			</c:if>
 				
-			<% } else { %>
+			<c:if test="${empty dto }">
 				<h3>없는 지역입니다.</h3>
+			</c:if>
 				
-			<% } %>
+			
 		
 		</div>
 	</section>
 
-	<%@ include file="../template/footer.jsp"%>
+	<c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>

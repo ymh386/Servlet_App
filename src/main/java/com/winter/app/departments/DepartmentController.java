@@ -109,8 +109,12 @@ public class DepartmentController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			RequestDispatcher view = request.getRequestDispatcher(actionForward.getPath());
-			view.forward(request, response);
+			if(actionForward.isFlag()) {
+				RequestDispatcher view = request.getRequestDispatcher(actionForward.getPath());
+				view.forward(request, response);
+			}else {
+				response.sendRedirect(actionForward.getPath());
+			}
 			
 //			try {
 //			DepartmentDAO departmentDAO = new DepartmentDAO();

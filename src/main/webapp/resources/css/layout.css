@@ -12,6 +12,7 @@
 .right {
     width: 85%;
     height: 100%;
+    
 }
 
 .menu, .contents_right {
@@ -33,12 +34,24 @@ header {
 }
 
 
-
-
 .menu {
+    display: flex;
+    justify-content: flex-end;
     
    
 }
+.menu > ul {
+	display: flex;
+}
+
+.menu > ul > li {
+	line-height: 70px;
+	margin-right: 30px;
+	font-weight: bold;
+}
+
+
+
 
 /* contents */
 .contents {

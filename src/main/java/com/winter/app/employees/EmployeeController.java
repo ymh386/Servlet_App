@@ -1,4 +1,4 @@
-package com.winter.app.locations;
+package com.winter.app.employees;
 
 import java.io.IOException;
 
@@ -12,18 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import com.winter.app.ActionForward;
 
 /**
- * Servlet implementation class LocationController
+ * Servlet implementation class EmployeeController
  */
-@WebServlet("/LocationController")
-public class LocationController extends HttpServlet {
+@WebServlet("/EmployeeController")
+public class EmployeeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private LocationService locationService;
+	private EmployeeService employeeService;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LocationController() {
-        locationService = new LocationService();
+    public EmployeeController() {
+        employeeService = new EmployeeService();
         // TODO Auto-generated constructor stub
     }
 
@@ -33,11 +33,7 @@ public class LocationController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String uri = request.getRequestURI();
-		
-		
-		uri = uri.substring(uri.lastIndexOf("/")+1);
-		System.out.println(uri);
-		
+		uri = uri.substring(uri.lastIndexOf("/") + 1);
 		String path = "";
 		
 		ActionForward actionForward = new ActionForward();
@@ -46,43 +42,27 @@ public class LocationController extends HttpServlet {
 		
 		try {
 			switch(uri) {
-			case "list.do":
-				locationService.getList(request, actionForward);
-				//attribute : 속성 (키:String , 값:Object)
-				//  
-				break;
-			
-			case "detail.do":
-				locationService.getDetail(request, actionForward);
-				
-				break;
-			
-			case "add.do":
+			case "join.do":
 				String method = request.getMethod();
 				if(method.toUpperCase().equals("POST")) {
-					locationService.add(request, actionForward);
+					employeeService.join(request, actionForward);
 				}else {
 					actionForward.setFlag(true);
-					actionForward.setPath("/WEB-INF/views/locations/add.jsp");
+					actionForward.setPath("/WEB-INF/views/employees/join.jsp");
 				}
 				
 				break;
 				
-			case "update.do":
+			case "login.do":
 				String m = request.getMethod();
 				if(m.toUpperCase().equals("POST")) {
-					locationService.updateProcess(request, actionForward);
-				} else {
-					locationService.update(request, actionForward);
+					employeeService.login(request, actionForward);
+				}else {
+					actionForward.setFlag(true);
+					actionForward.setPath("/WEB-INF/views/employees/login.jsp");
 				}
-				
-				break;
-				
-			case "delete.do":
-				locationService.delete(request, actionForward);
 				break;
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -91,11 +71,9 @@ public class LocationController extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher(actionForward.getPath());
 			view.forward(request, response);
 		}else {
+			//redirect
 			response.sendRedirect(actionForward.getPath());
 		}
-		
-//		if(uri.equals("list.do")) locationDAO.getList();
-//		else if(uri.equals("detail.do")) locationDAO.getDetail();
 	}
 
 	/**
@@ -104,11 +82,6 @@ public class LocationController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-	}
-	
-	private String useSubString(String data) {
-		String result = data.substring(data.lastIndexOf("/") + 1);
-		return result;
 	}
 
 }

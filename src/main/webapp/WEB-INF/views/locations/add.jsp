@@ -1,26 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@ include file="../template/common.jsp"%>
+<c:import url="../template/common.jsp"></c:import>
 </head>
 <body>
 	<!-- Sementic tag -->
 	<!-- JSP 파일 불러오기 : header.jsp -->
-	<%@ include file="../template/header.jsp"%>
+	<c:import url="../template/header.jsp"></c:import>
 
 	<section class="contents wrap_left">
 		<div class="left contents_left">
 			
-			<%@ include file="../template/nav.jsp" %>
+			<c:import url="../template/nav.jsp"></c:import>
 			
 		</div>
 		<div class="right contents_right">
 			<div class="form-wrapper">
-				<h2>부서 추가 페이지</h2>
+				<h2>지역 추가 페이지</h2>
 		
 				<form action="./add.do" method="post" id="add-form">
 					
@@ -39,7 +40,7 @@
 						
 						<input type="text" name="state_province" value="state province">
 						
-						<input type="text" name="country_id" value="국가번호">
+						<input type="text" name="country_id" value="국가코드">
 
 									
 						<input type="submit" value="등록하기">
@@ -51,6 +52,6 @@
 		</div>
 	</section>
 
-	<%@ include file="../template/footer.jsp"%>
+	<c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>

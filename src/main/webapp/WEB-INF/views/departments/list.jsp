@@ -1,25 +1,18 @@
-<%@page import="com.winter.app.departments.DepartmentDAO"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="com.winter.app.departments.DepartmentDTO"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% 
-	Object ar = request.getAttribute("list");
-	List<DepartmentDTO> list = (List<DepartmentDTO>)ar;
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@ include file="../template/common.jsp"%>
+<c:import url="../template/common.jsp"></c:import>
 <link rel="stylesheet" href="../resources/css/list.css">
 </head>
 <body>
-	<%@ include file="../template/header.jsp"%>
+	<c:import url="../template/header.jsp"></c:import>
 	<section class="wrap_left contents">
-		<%@ include file="../template/nav.jsp"%>
+		<c:import url="../template/nav.jsp"></c:import>
 		<div class="right contents_right">
 			<div class="contents_right_list">
 				<table class="table_sprite">
@@ -31,18 +24,21 @@
 					</thead>
 					<tbody>
 	
-						<%
-						for (int i = 0; i < list.size(); i++) {
-						%>
+						<c:forEach items="${list}" var="d" varStatus="st">
 						<tr>
-							<td><%=list.get(i).getDepartment_id()%></td>
+							<td>${pageScope.d.department_id }
+							
+								<h4>현재 아이템 : ${st.current}</h4>
+								<h4>인덱스 번호 : ${st.index}</h4>
+								<h4>순서 번호 : ${st.count}</h4>
+								<h4>첫번째인가 ? : ${st.first}</h4>
+								<h4>마지막인가 ? : ${st.last}</h4>
+							</td>
 							<td><a
-								href="./detail.do?department_id=<%=list.get(i).getDepartment_id()%>"><%=list.get(i).getDepartment_name()%></a>
+								href="./detail.do?department_id=${d.department_id}">${d.department_name}</a>
 							</td>
 						</tr>
-						<%
-						}
-						%>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
@@ -55,6 +51,6 @@
 
 	</section>
 
-	<%@ include file="../template/footer.jsp"%>
+	<c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>

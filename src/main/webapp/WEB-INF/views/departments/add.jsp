@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,12 +50,12 @@
 <body>
 	<!-- Sementic tag -->
 	<!-- JSP 파일 불러오기 : header.jsp -->
-	<%@ include file="../template/header.jsp"%>
+	<c:import url="../template/header.jsp"></c:import>
 
 	<section class="contents wrap_left">
 		<div class="left contents_left">
 			
-			<%@ include file="../template/nav.jsp" %>
+			<c:import url="../template/nav.jsp"></c:import>
 			
 		</div>
 		<div class="right contents_right">
@@ -86,7 +87,7 @@
 		</div>
 	</section>
 
-	<%@ include file="../template/footer.jsp"%>
+	<c:import url="../template/footer.jsp"></c:import>
 	
 </body>
 </html>

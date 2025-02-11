@@ -1,12 +1,6 @@
-<%@page import="com.winter.app.departments.DepartmentDAO"%>
-<%@page import="com.winter.app.departments.DepartmentDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-
-	DepartmentDTO departmentDTO = (DepartmentDTO)request.getAttribute("dto");
-
-%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,12 +12,12 @@
 <body>
 	<!-- Sementic tag -->
 	<!-- JSP 파일 불러오기 : header.jsp -->
-	<%@ include file="../template/header.jsp"%>
+	<c:import url="../template/header.jsp"></c:import>
 
 	<section class="contents wrap_left">
 		<div class="left contents_left">
 			
-			<%@ include file="../template/nav.jsp" %>
+			<c:import url="../template/nav.jsp"></c:import>
 			
 		</div>
 		<div class="right contents_right">
@@ -34,21 +28,21 @@
 			
 				<fieldset>
 					<legend>부서 이름</legend>
-					<input type="text" name="department_name" value="<%= departmentDTO.getDepartment_name() %>">
+					<input type="text" name="department_name" value="${requestScope.dto.department_name}">
 
 				</fieldset>
 				<fieldset>
 					<legend>매니저 아이디</legend>
-					<input type="text" name="manager_id" value="<%= departmentDTO.getManager_id() %>">
+					<input type="text" name="manager_id" value="${requestScope.dto.manager_id}">
 
 				</fieldset>
 				<fieldset>
 					<legend>지역 아이디</legend>
-					<input type="text" name="location_id" value="<%= departmentDTO.getLocation_id() %>">
+					<input type="text" name="location_id" value="${dto.location_id}">
 
 				</fieldset>
 				<fieldset>
-					<input type="hidden" name="department_id" value="<%= departmentDTO.getDepartment_id() %>">
+					<input type="hidden" name="department_id" value="${dto.department_id}">
 
 				</fieldset>
 			
@@ -62,6 +56,6 @@
 		</div>
 	</section>
 
-	<%@ include file="../template/footer.jsp"%>
+	<c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>
