@@ -16,7 +16,7 @@
 			<div class="right contents_right">
 				<h2>사원 등록 페이지</h2>
 				<div class="form_control">
-					<form action="./join.do" method="post">
+					<form action="join.do" method="post">
 						<fieldset>
 							<legend>First Name</legend>
 							<input type="text" name="first_name">

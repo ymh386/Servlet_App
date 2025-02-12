@@ -10,6 +10,51 @@ import oracle.jdbc.proxy.annotation.Pre;
 
 public class EmployeeDAO {
 	
+	public int update(EmployeeDTO employeeDTO) throws Exception {
+		int result = 0;
+		Connection con = DBConnection.getConnection();
+		String sql = "UPDATE EMPLOYEES SET FIRST_NAME=?, LAST_NAME=?"
+				+ " WHERE EMPLOYEE_ID=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1, employeeDTO.getFirst_name());
+		st.setString(2, employeeDTO.getLast_name());
+		st.setInt(3, employeeDTO.getEmployee_id());
+		
+		result = st.executeUpdate();
+		
+		DBConnection.disConnect(st, con);
+		
+		return result;
+	}
+	
+	public EmployeeDTO detail(EmployeeDTO employeeDTO) throws Exception {
+		Connection con = DBConnection.getConnection();
+		String sql = "SELECT * FROM EMPLOYEES WHERE EMPLOYEE_ID = ?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setInt(1, employeeDTO.getEmployee_id());
+		
+		ResultSet rs = st.executeQuery();
+		EmployeeDTO result = null;
+		if(rs.next()) {
+			result = new EmployeeDTO();
+			result.setLast_name(rs.getString("LAST_NAME"));
+			result.setEmail(rs.getString("EMAIL"));
+			result.setPhone_number(rs.getString("PHONE_NUMBER"));
+			result.setJob_id(rs.getString("JOB_ID"));
+			result.setSalary(rs.getInt("SALARY"));
+			result.setCommission_pct(rs.getDouble("COMMISSION_PCT"));
+			result.setManager_id(rs.getInt("MANAGER_ID"));
+			result.setDepartment_id(rs.getInt("DEPARTMENT_ID"));
+			result.setPassword(rs.getString("PASSWORD"));
+		}
+		
+		DBConnection.disConnect(rs, st, con);
+		
+		return result;
+	}
+	
 	public EmployeeDTO login(EmployeeDTO employeeDTO) throws Exception {
 		Connection con = DBConnection.getConnection();
 		String sql = "SELECT EMPLOYEE_ID, PASSWORD, FIRST_NAME FROM EMPLOYEES"

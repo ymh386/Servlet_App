@@ -14,29 +14,31 @@
 		<section class="wrap_left contents">
 			<c:import url="/WEB-INF/views/template/nav.jsp"></c:import>
 			<div class="right contents_right">
-				<h2>로그인 페이지</h2>
+				<!-- contents 내용 기술 -->
+				<h2>정보 수정 페이지</h2>
 				<div class="form_control">
-					<form action="./login.do" method="post">
+					<form action="update.do" method="post">
 						<fieldset>
-							<legend>아이디</legend>
-							<input type="text" name="employee_id">
+							<input type="text" name="employee_id" value="${sessionScope.user.employee_id}" readonly>
 						</fieldset>
 						<fieldset>
-							<legend>비밀번호</legend>
-							<input type="text" name="password">
+							<legend>First Name</legend>
+							<input type="text" name="first_name" value="${sessionScope.user.first_name}">
 						</fieldset>
 						<fieldset>
-							<legend>아이디 저장</legend>
-							<input type="checkbox" name="">
+							<legend>Last Name</legend>
+							<input type="text" name="last_name" value="${requestScope.user.last_name}">
 						</fieldset>
 						<fieldset>
-							<button type="submit">로그인</button>
+							<button type="submit">수정</button>
 						</fieldset>
 					</form>
 				</div>
 			</div>
+	
 		</section>	
 	
 	<c:import url="/WEB-INF/views/template/footer.jsp"></c:import>
+	
 </body>
 </html>

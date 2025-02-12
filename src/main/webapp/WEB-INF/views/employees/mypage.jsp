@@ -7,36 +7,31 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="/WEB-INF/views/template/common.jsp"></c:import>
-<link rel="stylesheet" href="../resources/css/form.css">
 </head>
 <body>
 	<c:import url="/WEB-INF/views/template/header.jsp"></c:import>
 		<section class="wrap_left contents">
 			<c:import url="/WEB-INF/views/template/nav.jsp"></c:import>
 			<div class="right contents_right">
-				<h2>로그인 페이지</h2>
-				<div class="form_control">
-					<form action="./login.do" method="post">
-						<fieldset>
-							<legend>아이디</legend>
-							<input type="text" name="employee_id">
-						</fieldset>
-						<fieldset>
-							<legend>비밀번호</legend>
-							<input type="text" name="password">
-						</fieldset>
-						<fieldset>
-							<legend>아이디 저장</legend>
-							<input type="checkbox" name="">
-						</fieldset>
-						<fieldset>
-							<button type="submit">로그인</button>
-						</fieldset>
-					</form>
+				<!-- contents 내용 기술 -->
+				
+				<div>
+					<h3>ID : ${sessionScope.user.employee_id}</h3>
+					<h3>FirstName : ${sessionScope.user.first_name}</h3>
+					<h3>LastName : ${requestScope.user.last_name}</h3>
+					<h3>Email : ${requestScope.user.email}</h3>
+					<h3>PhoneNumber : ${requestScope.user.phone_number}</h3>
 				</div>
+				
+				<div>
+					<a href="./update.do?employee_id=${sessionScope.user.employee_id}">정보 수정</a>
+				</div>
+				
 			</div>
+	
 		</section>	
 	
 	<c:import url="/WEB-INF/views/template/footer.jsp"></c:import>
+	
 </body>
 </html>
