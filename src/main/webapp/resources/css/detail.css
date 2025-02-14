@@ -1,0 +1,24 @@
+@charset "UTF-8";
+.contents_right_detail {
+	width: 50%;
+	margin: 30px auto;
+	
+	
+}
+.contents_right_detail > ul {
+	
+}
+
+.contents_right_detail li {
+	margin-bottom: 50px;
+	
+}
+
+.title {
+	font-weight: border;
+	font-size: larger;
+}
+
+.title_sub {
+	font-size: medium;
+}

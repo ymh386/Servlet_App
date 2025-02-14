@@ -12,8 +12,6 @@
   </filter-mapping>
   
   <!-- 배포서술자 DD -->
-  
-  <!-- Servlet 객체 생성 : 클래스명 참조변수명 = new 생성자() FQDN -->
   <servlet>
   	<servlet-name>homeController</servlet-name>
   	<servlet-class>com.winter.app.HomeController</servlet-class>
@@ -25,34 +23,34 @@
   	<url-pattern>/index.do</url-pattern>
   </servlet-mapping>
   
-  <!-- departments -->
+  <!-- products -->
   <servlet>
-  	<servlet-name>department</servlet-name>
-  	<servlet-class>com.winter.app.departments.DepartmentController</servlet-class>
+  	<servlet-name>product</servlet-name>
+  	<servlet-class>com.winter.app.products.ProductController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>department</servlet-name>
-  	<url-pattern>/departments/*</url-pattern>
+  	<servlet-name>product</servlet-name>
+  	<url-pattern>/products/*</url-pattern>
   </servlet-mapping>
   
-  <!-- locations -->
+  <!-- users -->
   <servlet>
-  	<servlet-name>location</servlet-name>
-  	<servlet-class>com.winter.app.locations.LocationController</servlet-class>
+  	<servlet-name>user</servlet-name>
+  	<servlet-class>com.winter.app.users.UserController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>location</servlet-name>
-  	<url-pattern>/locations/*</url-pattern>
+  	<servlet-name>user</servlet-name>
+  	<url-pattern>/users/*</url-pattern>
   </servlet-mapping>
   
-  <!-- Employees -->
+  <!-- accounts -->
   <servlet>
-  	<servlet-name>employee</servlet-name>
-  	<servlet-class>com.winter.app.employees.EmployeeController</servlet-class>
+  	<servlet-name>account</servlet-name>
+  	<servlet-class>com.winter.app.accounts.AccountController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>employee</servlet-name>
-  	<url-pattern>/employees/*</url-pattern>
+  	<servlet-name>account</servlet-name>
+  	<url-pattern>/accounts/*</url-pattern>
   </servlet-mapping>
 </web-app>
 
